@@ -26,8 +26,7 @@
     </nav>
 
     <div class="header__actions">
-      <a class="btn btn--ghost" href="index.html">Salir</a>
-      <button class="btn btn--brand" id="logout" type="button">Cerrar sesión</button>
+      <button class="btn btn--ghost" id="logout" type="button">Cerrar sesión</button>
     </div>
   </div>
 </header>
@@ -49,16 +48,17 @@
           <p class="muted">Solo para administración.</p>
 
           <label class="tiny muted">Email</label>
-          <input class="input" id="email" type="email" placeholder="admin@renacer.com" />
+          <input class="input" id="email" type="email" placeholder="admin@renacer.com" autocomplete="username" />
 
           <label class="tiny muted">Password</label>
-          <input class="input" id="password" type="password" placeholder="••••••••" />
+          <input class="input" id="password" type="password" placeholder="••••••••" autocomplete="current-password" />
 
           <div style="display:flex; gap:10px; margin-top:12px;">
             <button class="btn btn--brand" id="login" type="button">Entrar</button>
           </div>
 
           <p class="tiny muted" style="margin-top:10px;">*El usuario admin se crea en Supabase → Authentication.</p>
+          <p class="tiny muted" id="authStatus" style="margin-top:10px;"></p>
         </div>
       </div>
 
@@ -68,65 +68,75 @@
           <div class="contactBox">
             <h3>Agregar / Editar producto</h3>
 
-            <div class="grid" style="grid-template-columns: 1fr 1fr; gap:10px;">
-              <div>
-                <label class="tiny muted">SKU / ID (ej: RB-010)</label>
-                <input class="input" id="sku" placeholder="RB-010" />
-              </div>
-              <div>
-                <label class="tiny muted">Precio (S/)</label>
-                <input class="input" id="price" type="number" step="0.01" placeholder="45" />
+            <form id="productForm">
+              <div class="grid" style="grid-template-columns: 1fr 1fr; gap:10px;">
+                <div>
+                  <label class="tiny muted">SKU / ID (ej: RB-010)</label>
+                  <input class="input" id="sku" placeholder="RB-010" required />
+                </div>
+
+                <div>
+                  <label class="tiny muted">Precio (S/)</label>
+                  <input class="input" id="price" type="number" step="0.01" placeholder="45" required />
+                </div>
+
+                <div style="grid-column:1/-1;">
+                  <label class="tiny muted">Nombre</label>
+                  <input class="input" id="name" placeholder="Casaca Denim" required />
+                </div>
+
+                <div>
+                  <label class="tiny muted">Categoría</label>
+                  <select class="input" id="category" required>
+                    <option value="mujer">Mujer</option>
+                    <option value="hombre">Hombre</option>
+                    <option value="unisex">Unisex</option>
+                    <option value="ofertas">Ofertas</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="tiny muted">Talla</label>
+                  <input class="input" id="size" placeholder="M / L / S-M" />
+                </div>
+
+                <div>
+                  <label class="tiny muted">Estado (ej: 9/10)</label>
+                  <input class="input" id="condition" placeholder="9/10" />
+                </div>
+
+                <div>
+                  <label class="tiny muted">Stock</label>
+                  <input class="input" id="stock" type="number" placeholder="1" value="1" min="0" />
+                </div>
+
+                <div style="grid-column:1/-1;">
+                  <label class="tiny muted">Imagen del producto (se sube al Storage)</label>
+                  <input class="input" type="file" id="image" accept="image/*" capture="environment" />
+                  <p class="tiny muted" style="margin-top:6px;">
+                    *Si estás editando y no quieres cambiar la foto, deja este campo vacío.
+                  </p>
+
+                  <div id="previewWrap" style="display:none; margin-top:10px;">
+                    <img id="preview" alt="Vista previa" style="width:120px; height:auto; border-radius:12px; border:1px solid rgba(0,0,0,.08);" />
+                    <p class="tiny muted" id="currentImageText" style="margin-top:6px;"></p>
+                  </div>
+                </div>
+
+                <div style="grid-column:1/-1;">
+                  <label class="tiny muted">Descripción</label>
+                  <textarea class="input" id="description" rows="4" placeholder="Detalles, medidas, etc."></textarea>
+                </div>
               </div>
 
-              <div style="grid-column:1/-1;">
-                <label class="tiny muted">Nombre</label>
-                <input class="input" id="name" placeholder="Casaca Denim" />
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                <button class="btn btn--brand" id="save" type="submit">Guardar</button>
+                <button class="btn btn--ghost" id="reset" type="button">Limpiar</button>
+                <button class="btn btn--ghost" id="delete" type="button">Eliminar (por SKU)</button>
               </div>
 
-              <div>
-                <label class="tiny muted">Categoría</label>
-                <select class="input" id="category">
-                  <option value="mujer">Mujer</option>
-                  <option value="hombre">Hombre</option>
-                  <option value="unisex">Unisex</option>
-                  <option value="ofertas">Ofertas</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="tiny muted">Talla</label>
-                <input class="input" id="size" placeholder="M / L / S-M" />
-              </div>
-
-              <div>
-                <label class="tiny muted">Estado (ej: 9/10)</label>
-                <input class="input" id="condition" placeholder="9/10" />
-              </div>
-
-              <div>
-                <label class="tiny muted">Stock</label>
-                <input class="input" id="stock" type="number" placeholder="1" value="1" />
-              </div>
-
-              <div style="grid-column:1/-1;">
-                <label class="tiny muted">Imagen URL (por ahora)</label>
-                <input class="input" id="image_url" placeholder="https://..." />
-                <p class="tiny muted" style="margin-top:6px;">Luego lo mejoramos con subida a Supabase Storage (automático).</p>
-              </div>
-
-              <div style="grid-column:1/-1;">
-                <label class="tiny muted">Descripción</label>
-                <textarea class="input" id="description" rows="4" placeholder="Detalles, medidas, etc."></textarea>
-              </div>
-            </div>
-
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-              <button class="btn btn--brand" id="save" type="button">Guardar</button>
-              <button class="btn btn--ghost" id="reset" type="button">Limpiar</button>
-              <button class="btn btn--ghost" id="delete" type="button">Eliminar (por SKU)</button>
-            </div>
-
-            <p class="tiny muted" id="status" style="margin-top:10px;"></p>
+              <p class="tiny muted" id="status" style="margin-top:10px;"></p>
+            </form>
           </div>
 
           <div class="contactBox">
@@ -136,6 +146,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 </main>
