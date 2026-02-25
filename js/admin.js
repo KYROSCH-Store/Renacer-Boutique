@@ -263,7 +263,7 @@ form?.addEventListener("submit", async (e) => {
       image_url = newUrl;
     } catch (err) {
       console.error(err);
-      setStatus("Error subiendo imagen. Revisa policies del bucket.");
+      setStatus("Error subiendo imagen:" + (err?.message || JSON.stringify(err)));
       return;
     }
   }
