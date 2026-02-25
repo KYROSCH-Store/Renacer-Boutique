@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catálogo Test | Renacer Boutique</title>
+  <meta name="theme-color" content="#F860A8" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <main class="section">
+    <div class="container">
+      <header class="section__head">
+        <div>
+          <h1>Catálogo (TEST)</h1>
+          <p class="muted">Este archivo es para confirmar conexión Supabase y render. Cuando funcione, lo pasamos a tu catálogo final.</p>
+        </div>
+        <div class="section__actions" style="display:flex; gap:10px; flex-wrap:wrap;">
+          <input id="q" class="input" type="search" placeholder="Buscar..." />
+          <select id="cat" class="input">
+            <option value="all">Todo</option>
+            <option value="mujer">Mujer</option>
+            <option value="hombre">Hombre</option>
+            <option value="unisex">Unisex</option>
+            <option value="ofertas">Ofertas</option>
+          </select>
+        </div>
+      </header>
+
+      <!-- DEBUG EN PANTALLA -->
+      <div id="debug" class="contactBox" style="margin-bottom:14px;">
+        <strong>DEBUG:</strong> Iniciando…
+      </div>
+
+      <div class="grid products" id="products"></div>
+
+      <div class="center mt-24" id="empty" style="display:none;">
+        <p class="muted">No hay productos para mostrar.</p>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+    // ✅ CAMBIA ESTO (de Supabase → Settings → API)
+    const SUPABASE_URL = "https://ztpkcaoonmqwgglcphjf.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_xrXeRSRfBpcS3y9DBNTaTA_uc0Rr3Vk";
+
+    // WhatsApp (opcional en test)
+    const WHATSAPP_NUMBER = "51956327144";
+    const LOCALE = "Ayacucho, Huamanga, Carmen Alto";
+
+    const debugEl = document.getElementById("debug");
+    const productsEl = document.getElementById("products");
+    const emptyEl = document.getElementById("empty");
+    const qEl = document.getElementById("q");
+    const catEl = document.getElementById("cat");
+
+    function setDebug(msg){
+      debugEl.innerHTML = "<strong>DEBUG:</strong> " + msg;
+    }
+
+    function waLink(text){
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    }
+
+    function money(n){
+      const v = Number(n || 0);
+      return `S/ ${Math.round(v)}`;
+    }
+
+    function esc(s){
+      return (s ?? "").toString().replace(/[&<>"']/g, m => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+      }[m]));
+    }
+
+    // Carrito simple (solo SKUs)
+    const CART_KEY = "rb_cart_test";
+    function getCart(){ try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); } catch { return []; } }
+    function setCart(c){ localStorage.setItem(CART_KEY, JSON.stringify(c)); }
+    function addSku(sku){
+      const c = getCart();
+      const f = c.find(x => x.sku === sku);
+      if(f) f.qty += 1;
+      else c.push({ sku, qty: 1 });
+      setCart(c);
+    }
+
+    function card(p){
+      const sku = esc(p.sku);
+      const name = esc(p.name);
+      const cat = esc(p.category || "unisex");
+      const img = p.image_url ? esc(p.image_url) : "img/placeholder.jpg";
+      const stock = Number.isFinite(Number(p.stock)) ? Number(p.stock) : 1;
+
+      const msg = [
+        "Hola Renacer Boutique 👋",
+        `Soy de ${LOCALE}.`,
+        `Quiero la prenda ${sku} (${name})`,
+        `Precio: ${money(p.price)}`,
+        "¿Sigue disponible?"
+      ].join("\n");
+
+      return `
+        <article class="product" style="opacity:1 !important; visibility:visible !important; transform:none !important;">
+          <a class="product__img" href="#" aria-label="Producto ${sku}">
+            <img src="${img}" alt="${name}" loading="lazy" />
+            <span class="tag">${sku}</span>
+            ${stock <= 0 ? `<span class="tag" style="left:auto;right:12px;">Agotado</span>` : ``}
+          </a>
+          <div class="product__body">
+            <div class="product__top">
+              <h3>${name}</h3>
+              <span class="price">${money(p.price)}</span>
+            </div>
+            <p class="meta">Categoría: ${cat} • Stock ${stock}</p>
+            <div class="product__actions">
+              <button class="btn btn--small btn--brand" type="button" data-add="${sku}" ${stock<=0?"disabled":""}>
+                ${stock<=0?"Agotado":"Agregar al carrito"}
+              </button>
+              <a class="btn btn--small btn--ghost" href="${waLink(msg)}" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    let all = [];
+
+    function render(list){
+      if(!list.length){
+        productsEl.innerHTML = "";
+        emptyEl.style.display = "block";
+        return;
+      }
+      emptyEl.style.display = "none";
+      productsEl.innerHTML = list.map(card).join("");
+
+      // bind add
+      productsEl.querySelectorAll("[data-add]").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const sku = btn.getAttribute("data-add");
+          addSku(sku);
+          const old = btn.textContent;
+          btn.textContent = "Agregado ✅";
+          btn.disabled = true;
+          setTimeout(()=>{ btn.textContent = old; btn.disabled = false; }, 900);
+        });
+      });
+    }
+
+    function apply(){
+      const q = (qEl.value || "").toLowerCase().trim();
+      const cat = (catEl.value || "all").toLowerCase();
+
+      let list = [...all];
+      if(cat !== "all") list = list.filter(p => (p.category||"").toLowerCase() === cat);
+      if(q){
+        list = list.filter(p => (`${p.sku} ${p.name} ${p.category}`.toLowerCase()).includes(q));
+      }
+      render(list);
+    }
+
+    qEl.addEventListener("input", apply);
+    catEl.addEventListener("change", apply);
+
+    async function main(){
+      try{
+        setDebug("Creando cliente Supabase…");
+        const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+        setDebug("Consultando tabla products…");
+        const { data, error } = await supabase
+          .from("products")
+          .select("sku,name,price,category,stock,image_url,created_at")
+          .order("created_at", { ascending: false });
+
+        if(error){
+          console.error(error);
+          setDebug("ERROR Supabase: " + (error.message || JSON.stringify(error)));
+          return;
+        }
+
+        setDebug("OK ✅ Productos recibidos: " + (data?.length || 0));
+        all = data || [];
+        apply();
+      }catch(e){
+        console.error(e);
+        setDebug("ERROR JS: " + (e?.message || e));
+      }
+    }
+
+    main();
+  </script>
+</body>
+</html>
