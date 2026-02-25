@@ -1,7 +1,7 @@
 import { supabase } from "./supabaseClient.js";
 
 /** CONFIG */
-const BUCKET = "productos"; // tu bucket exacto
+const BUCKET = "products"; // tu bucket exacto
 const TABLE = "products";
 
 /** DOM */
