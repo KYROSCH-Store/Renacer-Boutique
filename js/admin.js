@@ -1,15 +1,18 @@
 import { supabase } from "./supabaseClient.js";
 
-/** CONFIG */
-const BUCKET = "products"; // tu bucket exacto
-const TABLE = "products";
+/** =========================
+ *  CONFIG
+ * ========================= */
+const BUCKET = "products";   // tu bucket exacto
+const TABLE  = "products";    // tu tabla exacta
 
-/** DOM */
+/** =========================
+ *  DOM
+ * ========================= */
 const authBox = document.getElementById("authBox");
 const adminApp = document.getElementById("adminApp");
-
-const authStatus = document.getElementById("authStatus");
 const statusEl = document.getElementById("status");
+const authStatus = document.getElementById("authStatus");
 
 const emailEl = document.getElementById("email");
 const passEl = document.getElementById("password");
@@ -36,17 +39,22 @@ const previewWrap = document.getElementById("previewWrap");
 const previewImg = document.getElementById("preview");
 const currentImageText = document.getElementById("currentImageText");
 
-/** State */
-let currentProduct = null; // producto cargado para editar (incluye image_url)
+/** =========================
+ *  STATE
+ * ========================= */
+let currentProduct = null; // producto cargado (para editar)
 
-/** UI helpers */
-function setAuthStatus(msg) {
-  if (authStatus) authStatus.textContent = msg || "";
-}
+/** =========================
+ *  UI helpers
+ * ========================= */
 function setStatus(msg) {
   if (statusEl) statusEl.textContent = msg || "";
 }
+function setAuthStatus(msg) {
+  if (authStatus) authStatus.textContent = msg || "";
+}
 function showPreview(url) {
+  if (!previewWrap || !previewImg || !currentImageText) return;
   if (!url) {
     previewWrap.style.display = "none";
     previewImg.src = "";
@@ -55,7 +63,7 @@ function showPreview(url) {
   }
   previewWrap.style.display = "block";
   previewImg.src = url;
-  currentImageText.textContent = "Imagen actual cargada.";
+  currentImageText.textContent = "Vista previa / imagen actual.";
 }
 
 function resetForm() {
@@ -69,11 +77,13 @@ function resetForm() {
   stockEl.value = "1";
   descEl.value = "";
   if (imageEl) imageEl.value = "";
-  setStatus("");
   showPreview(null);
+  setStatus("");
 }
 
-/** Safe filename */
+/** =========================
+ *  Utils
+ * ========================= */
 function sanitizeFileName(name) {
   return (name || "image")
     .toLowerCase()
@@ -81,7 +91,6 @@ function sanitizeFileName(name) {
     .replace(/[^a-z0-9.\-_]/g, "");
 }
 
-/** Extract storage path from public url */
 function storagePathFromPublicUrl(url) {
   if (!url) return null;
   const marker = `/storage/v1/object/public/${BUCKET}/`;
@@ -90,8 +99,19 @@ function storagePathFromPublicUrl(url) {
   return url.slice(idx + marker.length);
 }
 
-/** Upload image file to storage and return public URL */
+async function requireSession() {
+  const { data, error } = await supabase.auth.getSession();
+  if (error) throw error;
+  if (!data?.session) throw new Error("No hay sesión activa. Vuelve a iniciar sesión.");
+  return data.session;
+}
+
+/** =========================
+ *  Storage upload
+ * ========================= */
 async function uploadImage({ sku, file }) {
+  await requireSession(); // 🔥 garantiza authenticated
+
   const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
   const base = sanitizeFileName(file.name.replace(/\.[^/.]+$/, ""));
   const filePath = `${sku}/${Date.now()}-${base}.${ext}`;
@@ -99,27 +119,29 @@ async function uploadImage({ sku, file }) {
   const { error: uploadError } = await supabase
     .storage
     .from(BUCKET)
-    .upload(filePath, file, { upsert: false });
+    .upload(filePath, file, {
+      upsert: true,                 // evita choque si existiera
+      contentType: file.type || undefined
+    });
 
   if (uploadError) throw uploadError;
 
   const { data } = supabase.storage.from(BUCKET).getPublicUrl(filePath);
+  if (!data?.publicUrl) throw new Error("No se pudo obtener URL pública.");
   return data.publicUrl;
 }
 
-/** Optional: delete old image when replacing */
 async function deleteOldImageIfAny(oldPublicUrl) {
   const path = storagePathFromPublicUrl(oldPublicUrl);
   if (!path) return;
-
-  // Si no tienes policy DELETE, esto fallará (no rompe el save)
+  // Si no tienes policy DELETE, solo avisará en consola (no rompe nada)
   const { error } = await supabase.storage.from(BUCKET).remove([path]);
-  if (error) {
-    console.warn("No se pudo borrar imagen anterior (opcional):", error.message);
-  }
+  if (error) console.warn("No se pudo borrar imagen anterior:", error.message);
 }
 
-/** Load products list */
+/** =========================
+ *  Data
+ * ========================= */
 async function loadList() {
   listEl.innerHTML = `<p class="muted">Cargando…</p>`;
 
@@ -134,7 +156,7 @@ async function loadList() {
     return;
   }
 
-  if (!data || data.length === 0) {
+  if (!data?.length) {
     listEl.innerHTML = `<p class="muted">Aún no hay productos.</p>`;
     return;
   }
@@ -153,7 +175,6 @@ async function loadList() {
   });
 }
 
-/** Load single product and fill form */
 async function loadProductToForm(sku) {
   setStatus("Cargando producto…");
 
@@ -181,13 +202,16 @@ async function loadProductToForm(sku) {
   descEl.value = data.description || "";
 
   showPreview(data.image_url || null);
+  if (imageEl) imageEl.value = ""; // no obligar a cambiar foto al editar
 
   setStatus("Producto cargado. Edita y guarda.");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/** Session gate */
-async function checkSession() {
+/** =========================
+ *  Auth
+ * ========================= */
+async function checkSessionAndGate() {
   const { data } = await supabase.auth.getSession();
   const session = data?.session;
 
@@ -202,29 +226,29 @@ async function checkSession() {
   }
 }
 
-/** Auth */
 loginBtn?.addEventListener("click", async () => {
   setAuthStatus("Ingresando…");
-  const email = (emailEl.value || "").trim();
-  const password = passEl.value || "";
+  try {
+    const email = (emailEl.value || "").trim();
+    const password = passEl.value || "";
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) {
-    console.error(error);
-    setAuthStatus("Error: usuario o contraseña incorrecta.");
-    return;
+    setAuthStatus("");
+    await checkSessionAndGate();
+  } catch (err) {
+    console.error(err);
+    setAuthStatus("Error: " + (err?.message || "credenciales incorrectas"));
   }
-  setAuthStatus("");
-  await checkSession();
 });
 
 logoutBtn?.addEventListener("click", async () => {
   await supabase.auth.signOut();
   resetForm();
-  await checkSession();
+  await checkSessionAndGate();
 });
 
-/** Live preview for selected file */
+/** Preview local */
 imageEl?.addEventListener("change", () => {
   const file = imageEl.files?.[0];
   if (!file) return;
@@ -232,7 +256,9 @@ imageEl?.addEventListener("change", () => {
   showPreview(url);
 });
 
-/** Save (create/update) */
+/** =========================
+ *  Save / Update
+ * ========================= */
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -247,55 +273,47 @@ form?.addEventListener("submit", async (e) => {
 
   setStatus("Guardando…");
 
-  let image_url = currentProduct?.image_url || null;
+  try {
+    // 1) Subir imagen si viene archivo
+    let image_url = currentProduct?.image_url || null;
+    const file = imageEl?.files?.[0];
 
-  // If user selected a new image, upload it
-  const file = imageEl?.files?.[0];
-  if (file) {
-    try {
+    if (file) {
       const newUrl = await uploadImage({ sku, file });
-
-      // optional: delete old image
-      if (image_url && image_url !== newUrl) {
-        await deleteOldImageIfAny(image_url);
-      }
-
+      // Borrar anterior (opcional)
+      if (image_url && image_url !== newUrl) await deleteOldImageIfAny(image_url);
       image_url = newUrl;
-    } catch (err) {
-      console.error(err);
-      setStatus("Error subiendo imagen:" + (err?.message || JSON.stringify(err)));
-      return;
     }
+
+    // 2) Upsert producto
+    const payload = {
+      sku,
+      name,
+      price,
+      category: categoryEl.value,
+      size: (sizeEl.value || "").trim() || null,
+      condition: (conditionEl.value || "").trim() || null,
+      stock: Number(stockEl.value || 1),
+      image_url,
+      description: (descEl.value || "").trim() || null,
+    };
+
+    const { error } = await supabase.from(TABLE).upsert(payload, { onConflict: "sku" });
+    if (error) throw error;
+
+    setStatus("Guardado ✅");
+    if (imageEl) imageEl.value = "";
+    currentProduct = payload; // mantener estado
+    await loadList();
+  } catch (err) {
+    console.error(err);
+    setStatus("Error: " + (err?.message || JSON.stringify(err)));
   }
-
-  const payload = {
-    sku,
-    name,
-    price,
-    category: categoryEl.value,
-    size: (sizeEl.value || "").trim() || null,
-    condition: (conditionEl.value || "").trim() || null,
-    stock: Number(stockEl.value || 1),
-    image_url,
-    description: (descEl.value || "").trim() || null,
-  };
-
-  const { error } = await supabase
-    .from(TABLE)
-    .upsert(payload, { onConflict: "sku" });
-
-  if (error) {
-    console.error(error);
-    setStatus("Error guardando. Revisa RLS/políticas.");
-    return;
-  }
-
-  setStatus("Guardado ✅");
-  if (imageEl) imageEl.value = "";
-  await loadList();
 });
 
-/** Delete product (and optional image) */
+/** =========================
+ *  Delete
+ * ========================= */
 deleteBtn?.addEventListener("click", async () => {
   const sku = (skuEl.value || "").trim().toUpperCase();
   if (!sku) {
@@ -304,36 +322,33 @@ deleteBtn?.addEventListener("click", async () => {
   }
 
   setStatus("Eliminando…");
+  try {
+    // 1) leer imagen actual
+    const { data: prod, error: readErr } = await supabase
+      .from(TABLE)
+      .select("image_url")
+      .eq("sku", sku)
+      .maybeSingle();
 
-  // Fetch current for image deletion
-  const { data: prod } = await supabase
-    .from(TABLE)
-    .select("image_url")
-    .eq("sku", sku)
-    .maybeSingle();
+    if (readErr) console.warn(readErr);
 
-  const { error } = await supabase
-    .from(TABLE)
-    .delete()
-    .eq("sku", sku);
+    // 2) borrar row
+    const { error } = await supabase.from(TABLE).delete().eq("sku", sku);
+    if (error) throw error;
 
-  if (error) {
-    console.error(error);
-    setStatus("Error eliminando. Revisa permisos.");
-    return;
+    // 3) borrar imagen (opcional)
+    if (prod?.image_url) await deleteOldImageIfAny(prod.image_url);
+
+    setStatus("Eliminado ✅");
+    resetForm();
+    await loadList();
+  } catch (err) {
+    console.error(err);
+    setStatus("Error: " + (err?.message || JSON.stringify(err)));
   }
-
-  // optional: remove image
-  if (prod?.image_url) {
-    await deleteOldImageIfAny(prod.image_url);
-  }
-
-  setStatus("Eliminado ✅");
-  resetForm();
-  await loadList();
 });
 
 resetBtn?.addEventListener("click", resetForm);
 
 /** Start */
-checkSession();
+checkSessionAndGate();
