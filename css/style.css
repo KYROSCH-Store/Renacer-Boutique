@@ -660,7 +660,7 @@ img{ max-width:100%; display:block; }
         will-change: transform;
     }
     body {
-        padding-top: 55px;
+        padding-top: 75px;
     }
     .header__inner {
         width: 100%;

@@ -4,22 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Renacer Boutique | Prendas únicas con estilo</title>
-  <meta name="description" content="Ropa mixta seleccionada de segunda mano en excelente estado. Prendas únicas, compra fácil por WhatsApp." />
+  <!-- SEO -->
+  <title>Renacer Boutique | Ropa segunda mano en Ayacucho (Hombre y Mujer)</title>
+  <meta name="description" content="Renacer Boutique: ropa mixta de segunda mano seleccionada en Ayacucho. Prendas únicas para hombre y mujer. Compra fácil por WhatsApp." />
+  <link rel="canonical" href="https://kyrosch-store.github.io/Renacer-Boutique/" />
   <meta name="theme-color" content="#F860A8" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Renacer Boutique | Prendas únicas con estilo" />
-  <meta property="og:description" content="Ropa mixta seleccionada de segunda mano. Compra por WhatsApp." />
+  <meta property="og:title" content="Renacer Boutique | Ropa segunda mano en Ayacucho" />
+  <meta property="og:description" content="Prendas únicas para hombre y mujer. Compra por WhatsApp." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="img/og-cover.jpg" />
 
+  <!-- Favicons -->
   <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-<link rel="shortcut icon" href="favicon/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-<link rel="manifest" href="favicon/site.webmanifest">
-<meta name="apple-mobile-web-app-title" content="Renacer Boutique">
-<meta name="theme-color" content="#F860A8">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="Renacer Boutique">
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
@@ -29,21 +33,26 @@
   <!-- ================= HEADER ================= -->
   <header class="header" id="top">
     <div class="container header__inner">
-      <a class="brand" href="inicio.html" aria-label="Renacer Boutique">
+      <a class="brand" href="index.html" aria-label="Renacer Boutique">
         <img class="brand__logo" src="img/logo.svg" alt="Renacer Boutique" />
       </a>
 
+      <!-- Menú SEO: URLs reales -->
       <nav class="nav" aria-label="Navegación principal">
-        <a href="#nuevos">Nuevos</a>
-        <a href="#categorias">Categorías</a>
-        <a href="#como-comprar">Cómo comprar</a>
-        <a href="#reseñas">Reseñas</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contacto">Contacto</a>
+        <a class="is-active" href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="carrito.html">Carrito</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contacto.html">Contacto</a>
       </nav>
 
       <div class="header__actions">
         <a class="btn btn--brand" id="btnWhatsappHeader" href="#" rel="noopener">WhatsApp</a>
+
+        <!-- Carrito con contador -->
+        <a class="cartBtn" href="carrito.html" aria-label="Ver carrito">
+          🛒 <span class="cartCount" id="cartCount">0</span>
+        </a>
 
         <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -60,18 +69,18 @@
         </div>
 
         <nav class="drawer__nav" aria-label="Menú móvil">
-          <a href="#nuevos">Nuevos</a>
-          <a href="#categorias">Categorías</a>
-          <a href="#como-comprar">Cómo comprar</a>
-          <a href="#reseñas">Reseñas</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contacto">Contacto</a>
+          <a href="index.html">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="carrito.html">Carrito</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contacto.html">Contacto</a>
+          <!-- Admin separado (oculto si quieres) -->
+          <a class="nav__admin" href="admin.html">Admin</a>
         </nav>
 
         <a class="btn btn--brand btn--full" id="btnWhatsappDrawer" href="#" rel="noopener">Comprar por WhatsApp</a>
 
         <div class="drawer__social">
-          <!-- Cambia links -->
           <a class="chip" href="#" aria-label="Instagram">Instagram</a>
           <a class="chip" href="#" aria-label="Facebook">Facebook</a>
           <a class="chip" href="#" aria-label="TikTok">TikTok</a>
@@ -88,21 +97,22 @@
         <div class="hero__copy">
           <div class="eyebrow">
             <span class="dot" aria-hidden="true"></span>
-            Ropa mixta • Segunda mano seleccionada
+            Ropa mixta • Segunda mano seleccionada (Ayacucho)
           </div>
 
+          <!-- SEO: 1 H1 claro -->
           <h1>
-            Prendas únicas,
-            <span class="grad">estilo que renace</span>.
+            Ropa segunda mano en Ayacucho:
+            <span class="grad">hombre y mujer</span>.
           </h1>
 
           <p class="lead">
-            Piezas en excelente estado, listas para tu próximo outfit.
-            Stock limitado: cuando se va, no vuelve.
+            Prendas únicas en excelente estado, listas para tu próximo outfit.
+            Compra rápida por WhatsApp y stock limitado: cuando se va, no vuelve.
           </p>
 
           <div class="hero__cta">
-            <a class="btn btn--brand" href="#nuevos">Ver nuevos ingresos</a>
+            <a class="btn btn--brand" href="catalogo.html">Ver catálogo</a>
             <a class="btn btn--ghost" id="btnWhatsappHero" href="#" rel="noopener">Comprar por WhatsApp</a>
           </div>
 
@@ -130,13 +140,25 @@
 
         <div class="hero__media">
           <div class="mediaCard">
-            <img src="img/hero-renace-boutique.webp" alt="Renacer Boutique - Outfit destacado" loading="eager" />
+            <img src="img/hero-renace-boutique.webp" alt="Renacer Boutique - ropa mixta segunda mano en Ayacucho" loading="eager" />
             <div class="mediaCard__float">
               <span class="pill">🔥 Nuevos ingresos</span>
-              <span class="pill pill--soft">Solo 1 disponible</span>
+              <span class="pill pill--soft">Stock limitado</span>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- SEO text elegante (no se ve “spam”) -->
+    <section class="seo-content">
+      <div class="container">
+        <h2>Renacer Boutique: ropa seleccionada de segunda mano</h2>
+        <p class="muted">
+          Somos una boutique online en Ayacucho especializada en ropa de segunda mano seleccionada para hombre y mujer.
+          Nuestro catálogo cambia seguido con prendas únicas en excelente estado. Compra fácil por WhatsApp o arma tu carrito
+          y envía tu pedido en un solo mensaje.
+        </p>
       </div>
     </section>
 
@@ -149,7 +171,7 @@
         </article>
         <article class="mini reveal">
           <h3>Compra simple</h3>
-          <p>Te enviamos medidas y disponibilidad por WhatsApp.</p>
+          <p>Medidas y disponibilidad por WhatsApp.</p>
         </article>
         <article class="mini reveal">
           <h3>Stock único</h3>
@@ -158,27 +180,26 @@
       </div>
     </section>
 
-    <!-- ================= NUEVOS INGRESOS ================= -->
-    <section class="section" id="nuevos">
+    <!-- ================= DESTACADOS (teaser) ================= -->
+    <!-- OJO: el catálogo fuerte irá en catalogo.html (SEO + productos desde Supabase) -->
+    <section class="section" id="destacados">
       <div class="container">
         <header class="section__head">
           <div>
-            <h2>Nuevos ingresos</h2>
-            <p class="muted">Lo último que llegó. Piezas únicas en excelente estado.</p>
+            <h2>Destacados</h2>
+            <p class="muted">Una muestra rápida. Para ver todo el stock, entra al catálogo.</p>
           </div>
 
-          <div class="section__actions" aria-label="Filtros de productos">
-            <button class="seg is-active" type="button" data-filter="all">Todo</button>
-            <button class="seg" type="button" data-filter="mujer">Mujer</button>
-            <button class="seg" type="button" data-filter="hombre">Hombre</button>
+          <div class="section__actions">
+            <a class="btn btn--ghost" href="catalogo.html">Ir al catálogo</a>
           </div>
         </header>
 
         <div class="grid products" id="products">
-          <!-- ===== Producto ===== -->
+          <!-- Producto 1 -->
           <article class="product reveal" data-cat="mujer">
-            <a class="product__img" href="#" aria-label="Ver producto RB-001">
-              <img src="img/products/p1.jpg" alt="Casaca denim - mujer" loading="lazy" />
+            <a class="product__img" href="catalogo.html" aria-label="Ver producto RB-001">
+              <img src="img/products/p1.jpg" alt="Casaca denim mujer - Renacer Boutique" loading="lazy" />
               <span class="tag">RB-001</span>
             </a>
 
@@ -190,19 +211,30 @@
               <p class="meta">Talla M • Estado 9/10 • Solo 1</p>
 
               <div class="product__actions">
-                <a class="btn btn--small btn--brand"
+                <button class="btn btn--small btn--brand"
+                        type="button"
+                        data-add
+                        data-sku="RB-001"
+                        data-name="Casaca Denim"
+                        data-price="45">
+                  Agregar al carrito
+                </button>
+
+                <a class="btn btn--small btn--ghost"
                    href="#"
-                   data-wa="Hola Renacer Boutique 👋 Quiero la prenda RB-001 (Casaca Denim), talla M, S/45. ¿Sigue disponible?">
-                  Pedir por WhatsApp
+                   data-wa="Hola Renacer Boutique 👋 Quiero la prenda RB-001. ¿Sigue disponible?">
+                  WhatsApp
                 </a>
+
                 <button class="btn btn--small btn--ghost" type="button" data-copy="RB-001">Copiar ID</button>
               </div>
             </div>
           </article>
 
+          <!-- Producto 2 -->
           <article class="product reveal" data-cat="hombre">
-            <a class="product__img" href="#" aria-label="Ver producto RB-002">
-              <img src="img/products/p2.jpg" alt="Polo street - hombre" loading="lazy" />
+            <a class="product__img" href="catalogo.html" aria-label="Ver producto RB-002">
+              <img src="img/products/p2.jpg" alt="Polo street hombre - Renacer Boutique" loading="lazy" />
               <span class="tag">RB-002</span>
             </a>
 
@@ -214,288 +246,27 @@
               <p class="meta">Talla L • Estado 9/10 • Solo 1</p>
 
               <div class="product__actions">
-                <a class="btn btn--small btn--brand"
+                <button class="btn btn--small btn--brand"
+                        type="button"
+                        data-add
+                        data-sku="RB-002"
+                        data-name="Polo Street"
+                        data-price="30">
+                  Agregar al carrito
+                </button>
+
+                <a class="btn btn--small btn--ghost"
                    href="#"
-                   data-wa="Hola Renacer Boutique 👋 Quiero la prenda RB-002 (Polo Street), talla L, S/30. ¿Sigue disponible?">
-                  Pedir por WhatsApp
+                   data-wa="Hola Renacer Boutique 👋 Quiero la prenda RB-002. ¿Sigue disponible?">
+                  WhatsApp
                 </a>
+
                 <button class="btn btn--small btn--ghost" type="button" data-copy="RB-002">Copiar ID</button>
               </div>
             </div>
           </article>
 
-          <article class="product reveal" data-cat="mujer">
-            <a class="product__img" href="#" aria-label="Ver producto RB-003">
-              <img src="img/products/p3.jpg" alt="Blusa oversize - mujer" loading="lazy" />
-              <span class="tag">RB-003</span>
-            </a>
-
-            <div class="product__body">
-              <div class="product__top">
-                <h3>Blusa Oversize</h3>
-                <span class="price">S/ 35</span>
-              </div>
-              <p class="meta">Talla S/M • Estado 10/10 • Solo 1</p>
-
-              <div class="product__actions">
-                <a class="btn btn--small btn--brand"
-                   href="#"
-                   data-wa="Hola Renacer Boutique 👋 Quiero la prenda RB-003 (Blusa Oversize), talla S/M, S/35. ¿Sigue disponible?">
-                  Pedir por WhatsApp
-                </a>
-                <button class="btn btn--small btn--ghost" type="button" data-copy="RB-003">Copiar ID</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product reveal" data-cat="hombre">
-            <a class="product__img" href="#" aria-label="Ver producto RB-004">
-              <img src="img/products/p4.jpg" alt="Camisa casual - hombre" loading="lazy" />
-              <span class="tag">RB-004</span>
-            </a>
-
-            <div class="product__body">
-              <div class="product__top">
-                <h3>Camisa Casual</h3>
-                <span class="price">S/ 40</span>
-              </div>
-              <p class="meta">Talla M • Estado 9/10 • Solo 1</p>
-
-              <div class="product__actions">
-                <a class="btn btn--small btn--brand"
-                   href="#"
-                   data-wa="Hola Renacer Boutique 👋 Quiero la prenda RB-004 (Camisa Casual), talla M, S/40. ¿Sigue disponible?">
-                  Pedir por WhatsApp
-                </a>
-                <button class="btn btn--small btn--ghost" type="button" data-copy="RB-004">Copiar ID</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product reveal" data-cat="mujer">
-            <a class="product__img" href="#" aria-label="Ver producto RB-005">
-              <img src="img/products/p5.jpg" alt="Falda elegante - mujer" loading="lazy" />
-              <span class="tag">RB-005</span>
-            </a>
-
-            <div class="product__body">
-              <div class="product__top">
-                <h3>Falda Elegante</h3>
-                <span class="price">S/ 28</span>
-              </div>
-              <p class="meta">Talla S • Estado 9/10 • Solo 1</p>
-
-              <div class="product__actions">
-                <a class="btn btn--small btn--brand"
-                   href="#"
-                   data-wa="Hola Renacer Boutique 👋 Quiero la prenda RB-005 (Falda Elegante), talla S, S/28. ¿Sigue disponible?">
-                  Pedir por WhatsApp
-                </a>
-                <button class="btn btn--small btn--ghost" type="button" data-copy="RB-005">Copiar ID</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product reveal" data-cat="hombre">
-            <a class="product__img" href="#" aria-label="Ver producto RB-006">
-              <img src="img/products/p6.jpg" alt="Hoodie - hombre" loading="lazy" />
-              <span class="tag">RB-006</span>
-            </a>
-
-            <div class="product__body">
-              <div class="product__top">
-                <h3>Hoodie</h3>
-                <span class="price">S/ 55</span>
-              </div>
-              <p class="meta">Talla L • Estado 10/10 • Solo 1</p>
-
-              <div class="product__actions">
-                <a class="btn btn--small btn--brand"
-                   href="#"
-                   data-wa="Hola Renacer Boutique 👋 Quiero la prenda RB-006 (Hoodie), talla L, S/55. ¿Sigue disponible?">
-                  Pedir por WhatsApp
-                </a>
-                <button class="btn btn--small btn--ghost" type="button" data-copy="RB-006">Copiar ID</button>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="center mt-24">
-          <a class="btn btn--ghost" href="#categorias">Ver categorías</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CATEGORÍAS ================= -->
-    <section class="section" id="categorias">
-      <div class="container">
-        <header class="section__head">
-          <div>
-            <h2>Categorías</h2>
-            <p class="muted">Explora rápido por tipo. Ideal para compras por WhatsApp.</p>
-          </div>
-        </header>
-
-        <div class="grid cats">
-          <a class="cat reveal" href="#" aria-label="Categoría Mujer">
-            <div class="cat__icon" aria-hidden="true">♀</div>
-            <div class="cat__txt">
-              <strong>Mujer</strong>
-              <span>Vestidos, blusas, faldas y más.</span>
-            </div>
-            <span class="cat__arrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="cat reveal" href="#" aria-label="Categoría Hombre">
-            <div class="cat__icon" aria-hidden="true">♂</div>
-            <div class="cat__txt">
-              <strong>Hombre</strong>
-              <span>Polos, camisas, casacas y más.</span>
-            </div>
-            <span class="cat__arrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="cat reveal" href="#nuevos" aria-label="Categoría Nuevos ingresos">
-            <div class="cat__icon" aria-hidden="true">🔥</div>
-            <div class="cat__txt">
-              <strong>Nuevos ingresos</strong>
-              <span>Lo último que llegó (stock único).</span>
-            </div>
-            <span class="cat__arrow" aria-hidden="true">→</span>
-          </a>
-
-          <a class="cat reveal" href="#" aria-label="Categoría Ofertas">
-            <div class="cat__icon" aria-hidden="true">%</div>
-            <div class="cat__txt">
-              <strong>Ofertas</strong>
-              <span>Precios especiales por tiempo limitado.</span>
-            </div>
-            <span class="cat__arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CÓMO COMPRAR ================= -->
-    <section class="section section--soft" id="como-comprar">
-      <div class="container">
-        <header class="section__head">
-          <div>
-            <h2>Cómo comprar</h2>
-            <p class="muted">Proceso claro, simple y rápido.</p>
-          </div>
-        </header>
-
-        <div class="grid steps">
-          <article class="step reveal">
-            <div class="step__n">01</div>
-            <h3>Elige tu prenda</h3>
-            <p>Mira los nuevos ingresos o filtra por Mujer / Hombre. Copia el ID si quieres.</p>
-          </article>
-
-          <article class="step reveal">
-            <div class="step__n">02</div>
-            <h3>Escríbenos por WhatsApp</h3>
-            <p>Envíanos el ID y te respondemos con medidas, estado y disponibilidad.</p>
-          </article>
-
-          <article class="step reveal">
-            <div class="step__n">03</div>
-            <h3>Coordinamos entrega</h3>
-            <p>Confirmamos entrega o envío. Stock único: reservar es clave.</p>
-          </article>
-        </div>
-
-        <div class="ctaRow reveal">
-          <div class="ctaRow__card">
-            <strong>¿Quieres ayuda para elegir?</strong>
-            <p class="muted">Dinos tu talla y estilo y te recomendamos opciones.</p>
-          </div>
-          <a class="btn btn--brand" id="btnWhatsappHelp" href="#" rel="noopener">Asesoría por WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= RESEÑAS ================= -->
-    <section class="section" id="reseñas">
-      <div class="container">
-        <header class="section__head">
-          <div>
-            <h2>Reseñas</h2>
-            <p class="muted">Confianza real. Atención rápida y prendas tal cual.</p>
-          </div>
-          <div class="pillBar">
-            <span class="pill pill--soft">⭐ 4.9 promedio</span>
-            <span class="pill pill--soft">📦 Entregas coordinadas</span>
-          </div>
-        </header>
-
-        <div class="slider reveal" aria-roledescription="carrusel">
-          <div class="slider__track" id="track">
-            <article class="review">
-              <p>“La casaca llegó impecable, parecía nueva. Responden rápido por WhatsApp.”</p>
-              <div class="review__foot">
-                <strong>Andrea</strong>
-                <span class="muted">Compra verificada</span>
-              </div>
-            </article>
-
-            <article class="review">
-              <p>“Me ayudaron con medidas y me quedó perfecto. Súper recomendado.”</p>
-              <div class="review__foot">
-                <strong>Diego</strong>
-                <span class="muted">Compra verificada</span>
-              </div>
-            </article>
-
-            <article class="review">
-              <p>“Prendas únicas, buen precio y todo tal cual las fotos.”</p>
-              <div class="review__foot">
-                <strong>Valeria</strong>
-                <span class="muted">Compra verificada</span>
-              </div>
-            </article>
-          </div>
-
-          <div class="slider__controls">
-            <button class="icon-btn" type="button" id="prev" aria-label="Anterior">←</button>
-            <button class="icon-btn" type="button" id="next" aria-label="Siguiente">→</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FAQ ================= -->
-    <section class="section section--soft" id="faq">
-      <div class="container">
-        <header class="section__head">
-          <div>
-            <h2>Preguntas frecuentes</h2>
-            <p class="muted">Resolvemos lo típico para que compres seguro.</p>
-          </div>
-        </header>
-
-        <div class="faq">
-          <details class="faq__item reveal">
-            <summary>¿Las prendas son de segunda mano?</summary>
-            <p>Sí, pero son <strong>seleccionadas</strong> y revisadas. Indicamos el estado (9/10, 10/10) en cada prenda.</p>
-          </details>
-
-          <details class="faq__item reveal">
-            <summary>¿Cómo sé si me quedará?</summary>
-            <p>Nos escribes por WhatsApp con el ID y te enviamos <strong>medidas</strong> (largo, ancho, etc.) y recomendaciones.</p>
-          </details>
-
-          <details class="faq__item reveal">
-            <summary>¿Hacen envíos?</summary>
-            <p>Sí. Coordinamos entregas y envíos según zona. Escríbenos y te confirmamos opciones.</p>
-          </details>
-
-          <details class="faq__item reveal">
-            <summary>¿Puedo reservar una prenda?</summary>
-            <p>Sí. Como es stock único, la reserva es por tiempo corto mientras coordinamos.</p>
-          </details>
+          <!-- (Deja 2–6 destacados máximo en inicio. El resto va a catalogo.html) -->
         </div>
       </div>
     </section>
@@ -506,12 +277,12 @@
         <div class="final__card reveal">
           <h2>¿Lista/o para tu próximo outfit?</h2>
           <p class="muted">
-            Escríbenos por WhatsApp y te respondemos rápido con disponibilidad, medidas y delivery.
+            Escríbenos por WhatsApp y te respondemos con disponibilidad, medidas y delivery.
           </p>
 
           <div class="final__actions">
             <a class="btn btn--brand" id="btnWhatsappFinal" href="#" rel="noopener">Hablar por WhatsApp</a>
-            <a class="btn btn--ghost" href="#nuevos">Ver nuevos ingresos</a>
+            <a class="btn btn--ghost" href="catalogo.html">Ver catálogo</a>
           </div>
 
           <div class="final__chips">
@@ -545,16 +316,17 @@
       <div>
         <img class="footer__logo" src="img/logo.svg" alt="Renacer Boutique" />
         <p class="muted">
-          Prendas únicas de segunda mano seleccionada. Estilo accesible, atención rápida.
+          Ropa segunda mano seleccionada en Ayacucho. Prendas únicas para hombre y mujer.
         </p>
       </div>
 
       <div>
-        <h4>Secciones</h4>
-        <a href="#nuevos">Nuevos</a>
-        <a href="#categorias">Categorías</a>
-        <a href="#como-comprar">Cómo comprar</a>
-        <a href="#faq">FAQ</a>
+        <h4>Páginas</h4>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="carrito.html">Carrito</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contacto.html">Contacto</a>
       </div>
 
       <div>
@@ -565,12 +337,14 @@
     </div>
 
     <div class="container footer__bottom">
-      <small>© <span id="year"></span> Renacer Boutique. Todos los derechos reservados. <br>Desarrolado por <a href="https://vimosdigital.com" target="_blank" rel="noopener">Vimos Digital</a></small>
+      <small>
+        ©️ <span id="year"></span> Renacer Boutique. Todos los derechos reservados.
+        <br>Desarrollado por <a href="https://vimosdigital.com" target="_blank" rel="noopener">Vimos Digital</a>
+      </small>
       <a class="toTop" href="#top" aria-label="Volver arriba">↑</a>
     </div>
   </footer>
 
-  <!-- Botón flotante WhatsApp -->
   <a class="waFloat" id="waFloat" href="#" aria-label="WhatsApp Renacer Boutique" rel="noopener">💬</a>
 
   <script src="js/script.js"></script>
