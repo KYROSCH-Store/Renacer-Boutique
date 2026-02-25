@@ -3,91 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- SEO -->
-  <title>Renacer Boutique | Ropa segunda mano en Ayacucho (Hombre y Mujer)</title>
-  <meta name="description" content="Renacer Boutique: ropa mixta de segunda mano seleccionada en Ayacucho. Prendas únicas para hombre y mujer. Compra fácil por WhatsApp." />
-  <link rel="canonical" href="https://kyrosch-store.github.io/Renacer-Boutique/" />
+  <title>Catálogo | Renacer Boutique - Ayacucho (Huamanga, Carmen Alto)</title>
+  <meta name="description" content="Catálogo de ropa segunda mano seleccionada en Ayacucho (Huamanga, Carmen Alto). Prendas únicas para hombre y mujer. Compra por WhatsApp." />
   <meta name="theme-color" content="#F860A8" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Renacer Boutique | Ropa segunda mano en Ayacucho" />
-  <meta property="og:description" content="Prendas únicas para hombre y mujer. Compra por WhatsApp." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="img/og-cover.jpg" />
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
-  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-  <link rel="shortcut icon" href="favicon/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="manifest" href="favicon/site.webmanifest">
-  <meta name="apple-mobile-web-app-title" content="Renacer Boutique">
-
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
 
-  <!-- ================= HEADER ================= -->
-  <header class="header" id="top">
-    <div class="container header__inner">
-      <a class="brand" href="index.html" aria-label="Renacer Boutique">
-        <img class="brand__logo" src="img/logo.svg" alt="Renacer Boutique" />
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a class="brand" href="index.html" aria-label="Renacer Boutique">
+      <img class="brand__logo" src="img/logo.svg" alt="Renacer Boutique" />
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a class="is-active" href="catalogo.html">Catálogo</a>
+      <a href="carrito.html">Carrito</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--brand" id="btnWhatsappHeader" href="#" rel="noopener">WhatsApp</a>
+
+      <a class="cartBtn" href="carrito.html" aria-label="Ver carrito">
+        🛒 <span class="cartCount" id="cartCount">0</span>
       </a>
 
-      <!-- Menú SEO: URLs reales -->
-      <nav class="nav" aria-label="Navegación principal">
-        <a class="is-active" href="index.html">Inicio</a>
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__panel" role="dialog" aria-label="Menú móvil">
+      <div class="drawer__head">
+        <strong>Menú</strong>
+        <button class="icon-btn" id="drawerClose" type="button" aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <nav class="drawer__nav" aria-label="Menú móvil">
+        <a href="index.html">Inicio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="carrito.html">Carrito</a>
         <a href="faq.html">FAQ</a>
         <a href="contacto.html">Contacto</a>
+        <a class="nav__admin" href="admin.html">Admin</a>
       </nav>
 
-      <div class="header__actions">
-        <a class="btn btn--brand" id="btnWhatsappHeader" href="#" rel="noopener">WhatsApp</a>
-
-        <!-- Carrito con contador -->
-        <a class="cartBtn" href="carrito.html" aria-label="Ver carrito">
-          🛒 <span class="cartCount" id="cartCount">0</span>
-        </a>
-
-        <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <a class="btn btn--brand btn--full" id="btnWhatsappDrawer" href="#" rel="noopener">Comprar por WhatsApp</a>
     </div>
-
-    <!-- ===== Mobile Drawer ===== -->
-    <div class="drawer" id="drawer" aria-hidden="true">
-      <div class="drawer__panel" role="dialog" aria-label="Menú móvil">
-        <div class="drawer__head">
-          <strong>Menú</strong>
-          <button class="icon-btn" id="drawerClose" type="button" aria-label="Cerrar menú">✕</button>
-        </div>
-
-        <nav class="drawer__nav" aria-label="Menú móvil">
-          <a href="index.html">Inicio</a>
-          <a href="catalogo.html">Catálogo</a>
-          <a href="carrito.html">Carrito</a>
-          <a href="faq.html">FAQ</a>
-          <a href="contacto.html">Contacto</a>
-          <!-- Admin separado (oculto si quieres) -->
-          <a class="nav__admin" href="admin.html">Admin</a>
-        </nav>
-
-        <a class="btn btn--brand btn--full" id="btnWhatsappDrawer" href="#" rel="noopener">Comprar por WhatsApp</a>
-
-        <div class="drawer__social">
-          <a class="chip" href="#" aria-label="Instagram">Instagram</a>
-          <a class="chip" href="#" aria-label="Facebook">Facebook</a>
-          <a class="chip" href="#" aria-label="TikTok">TikTok</a>
-        </div>
-      </div>
-    </div>
-  </header>
+  </div>
+</header>
 
 <main id="main">
   <section class="section">
@@ -95,7 +66,7 @@
       <header class="section__head">
         <div>
           <h1>Catálogo</h1>
-          <p class="muted">Ropa de segunda mano seleccionada en <strong>Ayacucho</strong> (Huamanga, Carmen Alto). Stock único.</p>
+          <p class="muted">Ropa segunda mano seleccionada en <strong>Ayacucho</strong> (Huamanga, Carmen Alto). Stock único.</p>
         </div>
 
         <div class="section__actions" style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -111,52 +82,29 @@
         </div>
       </header>
 
+      <!-- Estado -->
+      <div id="statusBox" class="contactBox" style="display:none;"></div>
+
+      <!-- Productos -->
       <div class="grid products" id="products"></div>
 
       <div class="center mt-24" id="empty" style="display:none;">
-        <p class="muted">Aún no hay productos cargados. Entra a <a href="admin.html">Admin</a> para subirlos.</p>
+        <p class="muted">No hay productos para mostrar. Entra a <a href="admin.html">Admin</a> y sube el primero.</p>
       </div>
     </div>
   </section>
 </main>
 
 <footer class="footer">
-    <div class="container footer__grid">
-      <div>
-        <img class="footer__logo" src="img/logo.svg" alt="Renacer Boutique" />
-        <p class="muted">
-          Ropa segunda mano seleccionada en Ayacucho. Prendas únicas para hombre y mujer.
-        </p>
-      </div>
+  <div class="container footer__bottom">
+    <small>©️ <span id="year"></span> Renacer Boutique • Ayacucho (Huamanga, Carmen Alto)</small>
+    <a class="toTop" href="#top" aria-label="Volver arriba">↑</a>
+  </div>
+</footer>
 
-      <div>
-        <h4>Páginas</h4>
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="carrito.html">Carrito</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
+<a class="waFloat" id="waFloat" href="#" aria-label="WhatsApp Renacer Boutique" rel="noopener">💬</a>
 
-      <div>
-        <h4>Legal</h4>
-        <a href="#">Términos</a>
-        <a href="#">Política de privacidad</a>
-      </div>
-    </div>
-
-    <div class="container footer__bottom">
-      <small>
-        ©️ <span id="year"></span> Renacer Boutique. Todos los derechos reservados.
-        <br>Desarrollado por <a href="https://vimosdigital.com" target="_blank" rel="noopener">Vimos Digital</a>
-      </small>
-      <a class="toTop" href="#top" aria-label="Volver arriba">↑</a>
-    </div>
-  </footer>
-
-  <a class="waFloat" id="waFloat" href="#" aria-label="WhatsApp Renacer Boutique" rel="noopener">💬</a>
-
-<script type="module" src="js/catalogo.js"></script>
-<script src="js/script.js"></script>
+<!-- SOLO 1 SCRIPT (no usa script.js) -->
+<script type="module" src="js/catalogo-fixed.js"></script>
 </body>
 </html>

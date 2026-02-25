@@ -624,7 +624,10 @@ img{ max-width:100%; display:block; }
   opacity:1;
   transform: translateY(0);
 }
-
+.products .reveal {
+  opacity: 1;
+  transform: none;
+}
 /* ===== Helpers ===== */
 .center{ display:flex; justify-content:center; }
 .mt-24{ margin-top:24px; }
