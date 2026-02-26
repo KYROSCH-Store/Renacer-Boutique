@@ -31,49 +31,60 @@
 <a class="skip" href="#main">Saltar al contenido</a>
 
 <header class="header" id="top">
-  <div class="container header__inner">
-    <a class="brand" href="index.html" aria-label="Renacer Boutique">
-      <img class="brand__logo" src="img/logo.svg" alt="Renacer Boutique" />
-    </a>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Renacer Boutique">
+        <img class="brand__logo" src="img/logo.svg" alt="Renacer Boutique" />
+      </a>
 
-    <nav class="nav" aria-label="Navegación principal">
-      <a href="index.html">Inicio</a>
-      <a href="catalogo.html">Catálogo</a>
-      <a class="is-active" href="carrito.html">Carrito</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contacto.html">Contacto</a>
-    </nav>
-
-    <div class="header__actions">
-      <a class="btn btn--brand" id="btnWhatsappHeader" href="#" rel="noopener">WhatsApp</a>
-      <a class="cartBtn" href="carrito.html" aria-label="Ver carrito">🛒 <span class="cartCount" id="cartCount">0</span></a>
-
-      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-
-  <div class="drawer" id="drawer" aria-hidden="true">
-    <div class="drawer__panel" role="dialog" aria-label="Menú móvil">
-      <div class="drawer__head">
-        <strong>Menú</strong>
-        <button class="icon-btn" id="drawerClose" type="button" aria-label="Cerrar menú">✕</button>
-      </div>
-
-      <nav class="drawer__nav" aria-label="Menú móvil">
-        <a href="index.html">Inicio</a>
+      <!-- Menú SEO: URLs reales -->
+      <nav class="nav" aria-label="Navegación principal">
+        <a class="is-active" href="index.html">Inicio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="carrito.html">Carrito</a>
         <a href="faq.html">FAQ</a>
         <a href="contacto.html">Contacto</a>
-        <a class="nav__admin" href="admin.html">Admin</a>
       </nav>
 
-      <a class="btn btn--brand btn--full" id="btnWhatsappDrawer" href="#" rel="noopener">Comprar por WhatsApp</a>
+      <div class="header__actions">
+        <a class="btn btn--brand" id="btnWhatsappHeader" href="#" rel="noopener">WhatsApp</a>
+
+        <!-- Carrito con contador -->
+        <a class="cartBtn" href="carrito.html" aria-label="Ver carrito">
+          🛒 <span class="cartCount" id="cartCount">0</span>
+        </a>
+
+        <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
-  </div>
-</header>
+
+    <!-- ===== Mobile Drawer ===== -->
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer__panel" role="dialog" aria-label="Menú móvil">
+        <div class="drawer__head">
+          <strong>Menú</strong>
+          <button class="icon-btn" id="drawerClose" type="button" aria-label="Cerrar menú">✕</button>
+        </div>
+
+        <nav class="drawer__nav" aria-label="Menú móvil">
+          <a href="index.html">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="carrito.html">Carrito</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contacto.html">Contacto</a>
+        </nav>
+
+        <a class="btn btn--brand btn--full" id="btnWhatsappDrawer" href="#" rel="noopener">Comprar por WhatsApp</a>
+
+        <div class="drawer__social">
+          <a class="chip" href="#" aria-label="Instagram">Instagram</a>
+          <a class="chip" href="#" aria-label="Facebook">Facebook</a>
+          <a class="chip" href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
 <main id="main">
   <section class="section">
