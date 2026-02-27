@@ -599,6 +599,7 @@ img{ max-width:100%; display:block; }
   display:grid;
   gap:10px;
   padding:14px 0;
+  background: rgba(248,232,240,.92);
 }
 .drawer__nav a{
   padding:12px 12px;
@@ -612,6 +613,7 @@ img{ max-width:100%; display:block; }
   gap:10px;
   flex-wrap:wrap;
   margin-top:14px;
+  background: rgba(248,232,240,.92);
 }
 
 /* ===== Reveal animations ===== */

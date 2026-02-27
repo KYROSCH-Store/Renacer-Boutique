@@ -1,0 +1,153 @@
+/* ===========================
+   contacto.css (PRO + responsive)
+   Se apoya en tu style.css
+   =========================== */
+
+/* Mejoras de layout y “aire” */
+.section.section--soft .container{
+  max-width: 1120px;
+}
+
+.section__head{
+  gap: 14px;
+}
+
+.contactBox{
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+  border-radius: 18px;
+}
+
+/* Divisor suave */
+.contactBox hr{
+  border: none;
+  height: 1px;
+  background: rgba(0,0,0,.06);
+}
+
+/* Inputs más “premium” */
+.input{
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 14px;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.input:focus{
+  outline: none;
+  border-color: rgba(248,96,168,.55);
+  box-shadow: 0 0 0 4px rgba(248,96,168,.18);
+}
+
+/* Botones con micro interacción (sin cambiar tu identidad) */
+.btn{
+  transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+}
+
+.btn:hover{
+  transform: translateY(-1px);
+  filter: brightness(0.98);
+}
+
+.btn:active{
+  transform: translateY(0);
+}
+
+/* Cards internas tipo “atajos” */
+.ctaRow__card{
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.06);
+  background: rgba(255,255,255,.7);
+  padding: 12px 12px;
+}
+
+.chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 8px 12px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.65);
+  margin: 6px 6px 0 0;
+}
+
+/* Badge/eyebrow mejor alineado */
+.eyebrow{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.06);
+  background: rgba(255,255,255,.65);
+}
+
+.eyebrow .dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F860A8;
+}
+
+/* Social buttons stack con espacio */
+.social{
+  display: grid;
+  gap: 10px;
+}
+
+/* Vista pro del texto “lead” (si existe en tu css ya, esto solo afina) */
+.lead{
+  line-height: 1.6;
+}
+
+/* Estado del formulario */
+#contactStatus{
+  padding-top: 6px;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+/* Tablet */
+@media (max-width: 980px){
+  /* fuerza columnas a 1 en layout principal */
+  .section.section--soft .grid[style*="grid-template-columns: 1.25fr"]{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Móvil */
+@media (max-width: 640px){
+  .contactBox{
+    border-radius: 16px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.06);
+  }
+
+  /* form: 2 columnas → 1 columna */
+  #contactForm{
+    grid-template-columns: 1fr !important;
+  }
+
+  /* botones en una columna (full width) */
+  #contactForm .btn{
+    width: 100%;
+  }
+
+  /* header actions: evita apretado */
+  .header__actions{
+    gap: 10px;
+  }
+
+  /* más aire en chips */
+  .chip{
+    width: fit-content;
+  }
+}
+
+/* Extra: reduce sombras en pantallas muy pequeñas */
+@media (max-width: 380px){
+  .contactBox{
+    box-shadow: 0 6px 14px rgba(0,0,0,.05);
+  }
+}

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Contacto | Renacer Boutique - Ropa segunda mano en Ayacucho</title>
+  <meta name="description" content="Contacto Renacer Boutique en Ayacucho (Huamanga, Carmen Alto). Atención rápida por WhatsApp para ropa de segunda mano seleccionada para hombre y mujer." />
+  <meta name="theme-color" content="#F860A8" />
+  <link rel="canonical" href="https://kyrosch-store.github.io/Renacer-Boutique/contacto.html" />
+
+  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="Renacer Boutique">
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/contacto.css" />
+</head>
+
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a class="brand" href="index.html" aria-label="Renacer Boutique">
+      <img class="brand__logo" src="img/logo.svg" alt="Renacer Boutique" />
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="carrito.html">Carrito</a>
+      <a href="cotizador.html">Cotizador</a>
+      <a class="is-active" href="contacto.html">Contacto</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--brand" id="btnWhatsappHeader" href="#" rel="noopener">WhatsApp</a>
+      <a class="cartBtn" href="carrito.html" aria-label="Ver carrito">
+        🛒 <span class="cartCount" id="cartCount">0</span>
+      </a>
+
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__panel" role="dialog" aria-label="Menú móvil">
+      <div class="drawer__head">
+        <strong>Menú</strong>
+        <button class="icon-btn" id="drawerClose" type="button" aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <nav class="drawer__nav" aria-label="Menú móvil">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="carrito.html">Carrito</a>
+        <a href="cotizador.html">Cotizador</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+
+      <a class="btn btn--brand btn--full" id="btnWhatsappDrawer" href="#" rel="noopener">Comprar por WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO PRO -->
+  <section class="section section--soft">
+    <div class="container">
+      <header class="section__head">
+        <div>
+          <div class="eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            Atención por WhatsApp • Ayacucho
+          </div>
+          <h1>Hablemos 👋</h1>
+          <p class="lead">
+            Escríbenos para consultar <strong>medidas, tallas y disponibilidad</strong>.
+            Atendemos en <strong>Huamanga</strong> y <strong>Carmen Alto</strong>.
+          </p>
+
+          <div class="badges" style="margin-top:10px;">
+            <span class="badge">⚡ Respuesta rápida</span>
+            <span class="badge">♻️ Segunda mano seleccionada</span>
+            <span class="badge">🔥 Stock único</span>
+          </div>
+        </div>
+
+        <div class="pillBar">
+          <span class="pill pill--soft">📍 Ayacucho</span>
+          <span class="pill pill--soft">🧵 Hombre y Mujer</span>
+        </div>
+      </header>
+
+      <!-- GRID PRO -->
+      <div class="grid" style="grid-template-columns: 1.25fr .75fr; gap:14px; align-items:start;">
+
+        <!-- FORM CARD -->
+        <div class="contactBox">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+            <div>
+              <h3 style="margin-bottom:6px;">Mensaje directo</h3>
+              <p class="muted" style="margin:0;">Tu mensaje se arma solo y se abre WhatsApp listo para enviar.</p>
+            </div>
+            <a class="btn btn--ghost" id="quickWhatsApp" href="#" rel="noopener">Abrir WhatsApp</a>
+          </div>
+
+          <hr style="border:none; height:1px; background:rgba(0,0,0,.06); margin:14px 0;" />
+
+          <form id="contactForm" class="grid" style="grid-template-columns:1fr 1fr; gap:10px;">
+            <div style="grid-column:1/-1;">
+              <label class="tiny muted">Nombre</label>
+              <input class="input" id="c_name" type="text" placeholder="Tu nombre" required />
+            </div>
+
+            <div>
+              <label class="tiny muted">Distrito</label>
+              <select class="input" id="c_zone">
+                <option value="Huamanga">Huamanga</option>
+                <option value="Carmen Alto">Carmen Alto</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="tiny muted">Talla (opcional)</label>
+              <input class="input" id="c_size" type="text" placeholder="S / M / L" />
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label class="tiny muted">¿Qué buscas?</label>
+              <select class="input" id="c_topic">
+                <option value="Quiero comprar una prenda">Quiero comprar una prenda</option>
+                <option value="Quiero medidas y tallas">Quiero medidas y tallas</option>
+                <option value="Quiero coordinar delivery">Quiero coordinar delivery</option>
+                <option value="Quiero consultar stock">Quiero consultar stock</option>
+              </select>
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label class="tiny muted">Mensaje</label>
+              <textarea class="input" id="c_msg" rows="4" placeholder="Ej: Busco una casaca talla M, ¿qué tienes disponible?" required></textarea>
+            </div>
+
+            <div style="grid-column:1/-1; display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;">
+              <button class="btn btn--brand" type="submit">Enviar por WhatsApp</button>
+              <a class="btn btn--ghost" href="catalogo.html">Ver catálogo</a>
+            </div>
+
+            <p class="tiny muted" id="contactStatus" style="grid-column:1/-1; margin-top:6px;"></p>
+          </form>
+        </div>
+
+        <!-- SIDE PRO -->
+        <aside class="grid" style="grid-template-columns:1fr; gap:14px;">
+          <div class="contactBox">
+            <h3>Atajos</h3>
+            <p class="muted">Acciones rápidas para comprar sin perder tiempo.</p>
+
+            <div class="grid" style="grid-template-columns:1fr; gap:10px;">
+              <a class="btn btn--brand btn--full" id="btnWhatsappSide" href="#" rel="noopener">Comprar por WhatsApp</a>
+              <a class="btn btn--ghost btn--full" href="carrito.html">Ir al carrito</a>
+              <a class="btn btn--ghost btn--full" href="catalogo.html">Explorar catálogo</a>
+            </div>
+
+            <div style="margin-top:12px;">
+              <span class="chip">⏱️ Lun–Sáb 9am–8pm</span>
+              <span class="chip">📍 Ayacucho</span>
+              <span class="chip">🚚 Entregas coordinadas</span>
+            </div>
+          </div>
+
+          <div class="contactBox">
+            <h3>Redes</h3>
+            <p class="muted">Mira los drops del día y prendas nuevas.</p>
+
+            <div class="social">
+              <a id="igLink" class="btn btn--ghost btn--full" href="#" target="_blank" rel="noopener">Instagram</a>
+              <a id="fbLink" class="btn btn--ghost btn--full" href="#" target="_blank" rel="noopener">Facebook</a>
+              <a id="ttLink" class="btn btn--ghost btn--full" href="#" target="_blank" rel="noopener">TikTok</a>
+            </div>
+
+            <p class="tiny muted" style="margin-top:10px;">
+              Consejo: guarda nuestro WhatsApp y te avisamos cuando haya nuevos ingresos.
+            </p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final">
+    <div class="container final__grid">
+      <div class="final__card reveal">
+        <h2>¿Lista/o para tu próximo outfit?</h2>
+        <p class="muted">Envíanos tu talla y el tipo de prenda, y te recomendamos opciones.</p>
+        <div class="final__actions">
+          <a class="btn btn--brand" id="btnWhatsappFinal" href="#" rel="noopener">Hablar por WhatsApp</a>
+          <a class="btn btn--ghost" href="catalogo.html">Ver catálogo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <img class="footer__logo" src="img/logo.svg" alt="Renacer Boutique" />
+        <p class="muted">
+          Ropa segunda mano seleccionada en Ayacucho. Prendas únicas para hombre y mujer.
+        </p>
+      </div>
+
+      <div>
+        <h4>Páginas</h4>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="carrito.html">Carrito</a>
+        <a href="cotizador.html">Cotizador</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <a href="Terminos">Términos</a>
+        <a href="Politicas">Política de privacidad</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <small>
+        ©️ <span id="year"></span> Renacer Boutique. Todos los derechos reservados.
+        <br>Desarrollado por <a href="https://vimosdigital.com" target="_blank" rel="noopener">Vimos Digital</a>
+      </small>
+      <a class="toTop" href="#top" aria-label="Volver arriba">↑</a>
+    </div>
+  </footer>
+
+  <a class="waFloat" id="waFloat" href="#" aria-label="WhatsApp Renacer Boutique" rel="noopener">💬</a>
+
+<script src="js/contacto.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

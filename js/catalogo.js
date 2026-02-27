@@ -1,5 +1,5 @@
 import { supabase } from "./supabaseClient.js";
-import { WHATSAPP_NUMBER, LOCALE } from "./config.js";
+import { WHATSAPP_NUMBER} from "./config.js";
 import { addSku, cartCount } from "./store.js";
 
 /* =========================
@@ -24,7 +24,7 @@ function waLink(text){
 }
 
 function setWhatsAppDefault(){
-  const msg = `Hola Renacer Boutique 👋 Soy de ${LOCALE}. Quiero comprar, ¿me ayudas?`;
+  const msg = `Hola Renacer Boutique. Quiero comprar, ¿me ayudas?`;
   const ids = ["btnWhatsappHeader","btnWhatsappDrawer","waFloat"];
   ids.forEach(id=>{
     const el = document.getElementById(id);
@@ -103,7 +103,6 @@ function card(p){
 
   const msg = [
     "Hola Renacer Boutique 👋",
-    `Soy de ${LOCALE}.`,
     `Quiero la prenda ${sku} (${name})`,
     `Precio: ${money(price)}`,
     "¿Sigue disponible?"

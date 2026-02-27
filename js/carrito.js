@@ -1,12 +1,11 @@
 import { supabase } from "./supabaseClient.js";
-import { LOCALE } from "./config.js";
 import { getCart, removeSku, clearCart } from "./store.js";
 import { initCartCount, initDrawer, initWhatsAppButtons, initYear, waLink } from "./ui.js";
 
 initYear();
 initDrawer();
 initCartCount();
-initWhatsAppButtons(`Hola Renacer Boutique 👋 Soy de ${LOCALE}. Quiero comprar, ¿me ayudas?`);
+initWhatsAppButtons(`Hola Renacer Boutique 👋. Quiero comprar, ¿me ayudas?`);
 
 const listEl = document.getElementById("cartList");
 const emptyEl = document.getElementById("empty");
@@ -26,7 +25,7 @@ function buildMessage(items){
 
   return [
     "Hola Renacer Boutique 👋",
-    `Soy de ${LOCALE}. Quiero pedir estas prendas:`,
+    `Quiero pedir estas prendas:`,
     "",
     ...lines,
     "",

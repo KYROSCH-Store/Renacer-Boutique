@@ -1,0 +1,122 @@
+/* css/cotizador.css */
+.quoteGrid{
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.quoteItems{
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.qItem{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 16px;
+  background: rgba(255,255,255,.7);
+  box-shadow: 0 10px 26px rgba(0,0,0,.05);
+}
+
+.qItem__top{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qItem__meta{
+  margin-top: 6px;
+}
+
+.qItem__right{
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
+.qty{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty__in{
+  width: 78px;
+  text-align: center;
+}
+
+.qItem__sum{
+  font-size: 14px;
+}
+
+.quoteActions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top: 14px;
+}
+
+.couponRow{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.softHr{
+  border:none;
+  height:1px;
+  background: rgba(0,0,0,.06);
+  margin: 14px 0;
+}
+
+.quoteTotals{
+  display: grid;
+  gap: 10px;
+}
+
+.quoteTotals .row{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.quoteTotals .total{
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,.08);
+  font-size: 16px;
+}
+
+.quoteCta{
+  margin-top: 14px;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .quoteGrid{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px){
+  .qItem{
+    grid-template-columns: 1fr;
+  }
+  .qItem__right{
+    justify-items: start;
+  }
+  .couponRow{
+    grid-template-columns: 1fr;
+  }
+  .qty__in{
+    width: 92px;
+  }
+}

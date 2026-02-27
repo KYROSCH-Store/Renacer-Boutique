@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cotizador | Renacer Boutique</title>
+  <meta name="description" content="Cotiza tu pedido con delivery y total final. Compra por WhatsApp." />
+  <meta name="theme-color" content="#F860A8" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/cotizador.css" />
+</head>
+
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Renacer Boutique">
+        <img class="brand__logo" src="img/logo.svg" alt="Renacer Boutique" />
+      </a>
+
+      <!-- Menú SEO: URLs reales -->
+      <nav class="nav" aria-label="Navegación principal">
+        <a class="is-active" href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="carrito.html">Carrito</a>
+        <a href="cotizador.html">Cotizador</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="btn btn--brand" id="btnWhatsappHeader" href="#" rel="noopener">WhatsApp</a>
+
+        <!-- Carrito con contador -->
+        <a class="cartBtn" href="carrito.html" aria-label="Ver carrito">
+          🛒 <span class="cartCount" id="cartCount">0</span>
+        </a>
+
+        <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== Mobile Drawer ===== -->
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer__panel" role="dialog" aria-label="Menú móvil">
+        <div class="drawer__head">
+          <strong>Menú</strong>
+          <button class="icon-btn" id="drawerClose" type="button" aria-label="Cerrar menú">✕</button>
+        </div>
+
+        <nav class="drawer__nav" aria-label="Menú móvil">
+          <a href="index.html">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="carrito.html">Carrito</a>
+          <a href="cotizador.html">Cotizador</a>
+          <a href="contacto.html">Contacto</a>
+        </nav>
+
+        <a class="btn btn--brand btn--full" id="btnWhatsappDrawer" href="#" rel="noopener">Comprar por WhatsApp</a>
+
+        <div class="drawer__social">
+          <a class="chip" href="#" aria-label="Instagram">Instagram</a>
+          <a class="chip" href="#" aria-label="Facebook">Facebook</a>
+          <a class="chip" href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<main id="main">
+  <section class="section section--soft">
+    <div class="container">
+      <header class="section__head">
+        <div>
+          <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Cotización inteligente</div>
+          <h1>Tu pedido, con total final ✅</h1>
+          <p class="lead">
+            Calcula <strong>subtotal + delivery</strong>, aplica descuento si tienes cupón y envía el pedido por WhatsApp con mensaje listo.
+          </p>
+          <div class="badges" style="margin-top:10px;">
+            <span class="badge">🧾 Resumen claro</span>
+            <span class="badge">🚚 Delivery por zona</span>
+            <span class="badge">💬 WhatsApp listo</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="grid quoteGrid">
+        <!-- LEFT -->
+        <div class="contactBox">
+          <h3>Resumen del carrito</h3>
+          <p class="muted" id="cartHint">Cargando productos…</p>
+
+          <div id="items" class="quoteItems"></div>
+
+          <div class="quoteActions">
+            <a class="btn btn--ghost" href="catalogo.html">Seguir comprando</a>
+            <button class="btn btn--ghost" id="btnClear" type="button">Vaciar carrito</button>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <aside class="contactBox">
+          <h3>Datos para cotizar</h3>
+
+          <div class="grid" style="grid-template-columns:1fr 1fr; gap:10px;">
+            <div style="grid-column:1/-1;">
+              <label class="tiny muted">Nombre</label>
+              <input class="input" id="q_name" type="text" placeholder="Tu nombre" />
+            </div>
+
+            <div>
+              <label class="tiny muted">Tipo de entrega</label>
+              <select class="input" id="q_mode">
+                <option value="delivery">Delivery</option>
+                <option value="recojo">Recojo (S/0)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="tiny muted">Zona (referencial)</label>
+              <select class="input" id="q_zone">
+                <option value="Huamanga">Huamanga</option>
+                <option value="Carmen Alto">Carmen Alto</option>
+                <option value="San Juan Bautista">San Juan Bautista</option>
+                <option value="Nazarenas"> Nazarenas</option>
+                <option value="Andres Avelino Caceres">Andres Avelino Caceres</option>
+                <option value="Mollepata">Mollepata</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label class="tiny muted">Referencia / dirección (opcional)</label>
+              <input class="input" id="q_ref" type="text" placeholder="Ej: por la plaza, cerca a..." />
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label class="tiny muted">Cupón (opcional)</label>
+              <div class="couponRow">
+                <input class="input" id="q_coupon" type="text" placeholder="Ej: RENACER10" />
+                <button class="btn btn--ghost" id="btnApplyCoupon" type="button">Aplicar</button>
+              </div>
+              <p class="tiny muted" id="couponStatus"></p>
+            </div>
+          </div>
+
+          <hr class="softHr" />
+
+          <div class="quoteTotals">
+            <div class="row"><span class="muted">Subtotal</span><strong id="t_sub">S/ 0.00</strong></div>
+            <div class="row"><span class="muted">Descuento</span><strong id="t_disc">- S/ 0.00</strong></div>
+            <div class="row"><span class="muted">Delivery</span><strong id="t_ship">S/ 0.00</strong></div>
+            <div class="row total"><span>Total</span><strong id="t_total">S/ 0.00</strong></div>
+          </div>
+
+          <div class="quoteCta">
+            <button class="btn btn--brand btn--full" id="btnWhatsAppQuote" type="button">Enviar cotización por WhatsApp</button>
+            <p class="tiny muted" id="quoteStatus"></p>
+          </div>
+
+          <div style="margin-top:12px;">
+            <span class="chip">♻️ Stock único</span>
+            <span class="chip">⚡ Respuesta rápida</span>
+            <span class="chip">📦 Entregas coordinadas</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <img class="footer__logo" src="img/logo.svg" alt="Renacer Boutique" />
+        <p class="muted">
+          Ropa segunda mano seleccionada en Ayacucho. Prendas únicas para hombre y mujer.
+        </p>
+      </div>
+
+      <div>
+        <h4>Páginas</h4>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="carrito.html">Carrito</a>
+        <a href="cotizador.html">Cotizador</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <a href="Terminos">Términos</a>
+        <a href="Politicas">Política de privacidad</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <small>
+        ©️ <span id="year"></span> Renacer Boutique. Todos los derechos reservados.
+        <br>Desarrollado por <a href="https://vimosdigital.com" target="_blank" rel="noopener">Vimos Digital</a>
+      </small>
+      <a class="toTop" href="#top" aria-label="Volver arriba">↑</a>
+    </div>
+  </footer>
+
+  <a class="waFloat" id="waFloat" href="#" aria-label="WhatsApp Renacer Boutique" rel="noopener">💬</a>
+
+<script src="js/cotizador.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
