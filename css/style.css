@@ -530,20 +530,13 @@ img{ max-width:100%; display:block; }
   margin-top:14px;
   padding-top:14px;
   border-top:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
+  justify-content:center;
   align-items:center;
-  gap:12px;
+  text-align: center;
 }
-.footer__bottom a{
-  color: #0b132b;
-  font-weight:900;
-  font: size 13px;
-  opacity:.85;
-}
-.footer__bottom a:hover{
-  opacity:1;
-}
+.footer__bottom small{
+  color: var(--muted)
+} 
 .toTop{
   width:44px; height:44px;
   border-radius:14px;
